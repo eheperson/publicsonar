@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "2213ccc3-615e-468b-be5c-c8c0a6196c86",
+		"name": "publicsonar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21685153"
+	},
+	"item": [
+		{
+			"name": "Message Classifier",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Message\": \"paris saint-germain vs real madrid - uefa champions league - fifa 22 live - #parissaintgermain #realmadrid #championsleague #fifa22 #football #soccer #messi #premierleague #fifa #ucl #realmadrid #cr #laliga #ronaldo #seriea #futbol #neymar #barcelona #juventus #cristianoronaldo #calcio #europaleague #uefa #futebol #a #psg #bundesliga #liverpool #champions #uefachampionsleague #sport #fcbarcelona #bhfyp #fifatrade #teamoftheweek #inform #fifainvesting #proclubs #fifasquad #fifafails #futchamps #esportsfifa #sbcsolution #totssf #trading #packopening #ut #soccer #pacybits #ratings #fifasbc #eaids #fifaskills #fifaproclubs #icon #messi #fifaplayer #fifalegend #totwprediction #fifatradingtips #fifateam #icons #ea #cristiano #chelsea #like #goal #nike #mbappe #halamadrid #leomessi #ligue #inter #juve #madrid #bhfyp #follow #bayernmunich #worldcup #serieatim #fcb #barca #adidas #acmilan #love #euro #fut #italy #sports #instagram #england #bayern #italia #fifa #fut #fifatrading #ultimateteam #fifaultimateteam #gunnahsportsentertainment #futchampions #totw #fifapacks #easportsfifa #fifapack #easports #fifacoins #fifamobile #sbc #fifaplayers #weekendleague #toty #fifaut #fifaratings #squadbuilder #packluck #fifagoals #fifamemes #fifapoints #potm #tots #futtrading #fifafut #football #bhfyp copyright disclaimer copyright disclaimer under section 107 of the copyright act 1976,allowance is made for \\\"fair use\\\" for purposes such as criticism,comment,nees reporting,teaching,scholarship,and research. fair use is a use permitted by copyright statute that might otherwise be infringing. the views and opinions expressed in the media or comments on this channel ore those of the speakers or authors and do not necessarily reflect or represent the views and opinions held by this channels broadcaster. due to the social nature of this broadcasting channel videos may contain content copyrighted by another entity or person.this channel's owner claims no copyright to said content.the broadcaster of this channel cannot be held accountable for the copyrighted content.the broadcaster of this channel is a messenger and sharer of information and strives to verify,but cannot warrant the accuracy of copyrights or completeness of the information on this channel. if you have a complaint about something or find your content is being used incorrectly, please contact the broadcaster prior to making a cooyright claim.any infringement was not done on purpose and will be rectified to all parties satisfaction.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/classifier",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"classifier"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

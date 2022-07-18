@@ -1,0 +1,6 @@
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/tmdvs/Go-Emoji-Utils v1.1.0 h1:gtPix7HZPrd49+MNDcuRLvv4xVNxCE5wgjqyuvmbyYg=
+github.com/tmdvs/Go-Emoji-Utils v1.1.0/go.mod h1:J82i2WeGn+Kz+T3s5v9+i/OJlvevIVfGZ6qXgqiNWBc=
+gopkg.in/Knetic/govaluate.v2 v2.3.0 h1:naJVc9CZlWA8rC8f5mvECJD7jreTrn7FvGXjBthkHJQ=
+gopkg.in/Knetic/govaluate.v2 v2.3.0/go.mod h1:NW0gr10J8s7aNghEg6uhdxiEaBvc0+8VgJjVViHUKp4=
