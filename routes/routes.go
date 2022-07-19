@@ -6,5 +6,6 @@ import(
 )
 
 var PublicSonarRoutes = func(router *mux.Router){
-	router.HandleFunc("/api/classifier", controllers.Classifier).Methods("GET")
+	router.HandleFunc("/api/message-classifier", controllers.Classifier).Methods("GET")
+	router.HandleFunc("/api/messages-json", controllers.MessagesJson).Methods("GET")
 }

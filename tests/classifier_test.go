@@ -15,6 +15,8 @@ import (
 	"ehe.com/publicsonar/classifier"
 )
 
+// func TestSingleMessage(t *testing.T) {
+// 	messsage := ""
 
 func TestClassifier(t *testing.T) {
 	var caseClassArr []defs.CaseClass

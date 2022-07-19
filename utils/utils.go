@@ -9,7 +9,7 @@ import(
 	"log"
 	"fmt"
 	"net/http"
-	// "regexp"
+	"regexp"
 	// "gopkg.in/Knetic/govaluate.v2"
 	"github.com/tmdvs/Go-Emoji-Utils"
 	"ehe.com/publicsonar/defs"
@@ -23,9 +23,13 @@ func TextCleaner(str string) string{
 	// }
 	// str1 = re.ReplaceAllString(str1, " ")
 
+	nonAlphanumericRegex := regexp.MustCompile(`[^a-zA-Z0-9 ]+`)
+	str = nonAlphanumericRegex.ReplaceAllString(str, " ")
+
 	str = emoji.RemoveAll(str)
 	str = strings.ToLower(str)
 	str = strings.TrimSuffix(str, "\n")
+	// fmt.Println(str)
 	return str
 }
 
@@ -33,12 +37,12 @@ func ReadCases() []defs.Cases{
 	var cases []defs.Cases
 
     // Open our jsonFile
-    jsonFile, err := os.Open("storage/cases.json")
+    jsonFile, err := os.Open("./storage/cases.json")
     // if we os.Open returns an error then handle it
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Println("Successfully Opened users.json")
+    fmt.Println("Successfully Opened cases.json")
     // defer the closing of our jsonFile so that we can parse it later on
     defer jsonFile.Close()
     // read our opened xmlFile as a byte array.
@@ -55,14 +59,15 @@ func ReadMessages() []string{
 	var arr []string
 
 	// Open our jsonFile
-	jsonFile, err := os.Open("storage/messages.json")
+	jsonFile, err := os.Open("./storage/messages.json")
 	// if we os.Open returns an error then handle it
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Successfully Opened users.json")
+	fmt.Println("Successfully Opened messages.json")
 	// defer the closing of our jsonFile so that we can parse it later on
 	defer jsonFile.Close()
+	
 	// read our opened xmlFile as a byte array.
 	file, _ := ioutil.ReadAll(jsonFile)
 

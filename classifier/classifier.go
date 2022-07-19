@@ -9,8 +9,26 @@ import (
 	"gopkg.in/Knetic/govaluate.v2"
 	"ehe.com/publicsonar/utils"
 	"ehe.com/publicsonar/defs"
+	// "fmt"
 )
 
+func messageTokenizer(message string) []string{
+	return strings.Fields(message)
+}
+
+func singleQueryCheck(message string,  query string) bool {
+	var ifQueryExistsFlag bool = false
+	tokenizedMessage := messageTokenizer(message)
+
+	for i := range tokenizedMessage{
+		if strings.Compare(query, tokenizedMessage[i]) == 0 {
+			ifQueryExistsFlag = true
+		}
+		// fmt.Println(tokenizedMessage[i], " ---- ", ifQueryExistsFlag)
+	}
+
+	return ifQueryExistsFlag
+}
 
 func QueryTokenizer(query string) []string{
 	ORCounter := strings.Count(query, "OR")
@@ -34,14 +52,32 @@ func QueryTokenizer(query string) []string{
 
 func QueryRefactor(query, message string) string{
 	// originalQuery := query
+
+	var queryTokenLength int
 	message = utils.TextCleaner(message)
 	tokenizedQuery := QueryTokenizer(query)
+
 	for _, val := range tokenizedQuery{
-		if strings.Contains(message, val){
-			query = strings.Replace(query, val, "true" , 1)
+		queryTokenLength = len(strings.Fields(val))
+		// fmt.Println("len : ", queryTokenLength, "token : ", val)
+
+		if queryTokenLength == 1 {
+			singleQueryFlag := singleQueryCheck(message, val)
+
+			if singleQueryFlag{
+				query = strings.Replace(query, val, "true" , 1)
+			} else {
+				query = strings.Replace(query, val, "false" , 1)
+			}
+
 		} else {
-			query = strings.Replace(query, val, "false" , 1)
+			if strings.Contains(message, val){
+				query = strings.Replace(query, val, "true" , 1)
+			} else {
+				query = strings.Replace(query, val, "false" , 1)
+			}
 		}
+
 	}
 	ORCounter := strings.Count(query, "OR")
 	query = strings.Replace(query, "OR", "||", ORCounter)
@@ -55,10 +91,10 @@ func QueryRefactor(query, message string) string{
 	return query
 }
 
-func MessageClassifier(message string, ) []int{
+func MessageClassifier(message string, cases []defs.Cases) []int{
 	var query string
 	var caseArr []int
-	cases := utils.ReadCases()
+
 	for j := range cases {
 		// fmt.Println(cases[j])
 		if len(cases[j].Query) != 0{
@@ -89,7 +125,6 @@ func MessageClassifier(message string, ) []int{
 	// 		Message: utils.TextCleaner(messages[i]), 
 	// 		CaseIds: caseArr,
 	// }
-
 	// fmt.Println(tempCaseClass)
 	// fmt.Println(messages[i])
 	// classifiedMessagesArr = append(classifiedMessagesArr, messageClassifier(cases, messages[i]))
@@ -98,44 +133,16 @@ func MessageClassifier(message string, ) []int{
 }
 
 
-
 func Tester(){
 	var caseClassArr []defs.CaseClass
-	var query string
-	var caseArr []int
+	// var query string
+	// var caseArr []int
 	cases := utils.ReadCases()
 	messages := utils.ReadMessages()
 	for i := range messages {
-		caseArr = nil
-		for j := range cases {
-			// fmt.Println(cases[j])
-			if len(cases[j].Query) != 0{
-				query = cases[j].Query
-			}
-			if len(cases[j].Queries) != 0{
-				query = cases[j].Queries
-			}
-
-			refactoredQuery := QueryRefactor(query, messages[i])
-			// expression := binaryTree(refactoredQuery)
-		
-			evaluableExp, err := govaluate.NewEvaluableExpression(refactoredQuery)
-			if err != nil {
-				log.Fatal(err)
-			}
-			result, err := evaluableExp.Evaluate(nil)
-			if err != nil {
-				log.Fatal(err)
-			}
-			if result == true{
-			// fmt.Printf("%v -- %T \n",result, result)
-				caseArr = append(caseArr, cases[j].CaseId)
-			}
-		}
-
 		tempCaseClass := defs.CaseClass{
 				Message: utils.TextCleaner(messages[i]), 
-				CaseIds: caseArr,
+				CaseIds: MessageClassifier(messages[i], cases),
 		}
 
 		caseClassArr = append(caseClassArr, tempCaseClass)

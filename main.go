@@ -7,11 +7,9 @@ import (
 	"github.com/gorilla/mux"
 
 	"ehe.com/publicsonar/routes"
-	// "ehe.com/publicsonar/classifier"
 )
 
 func main(){
-	// classifier.Tester()
 	r := mux.NewRouter()
 	routes.PublicSonarRoutes(r)
 	http.Handle("/api/classifier", r)
