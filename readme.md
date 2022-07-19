@@ -1,4 +1,6 @@
+# Publicsonar
 
+Technical assignment for publicsonar comp
 ## Prepare 
 ```
     go mod init ehe.com/publicsonar
